@@ -455,7 +455,7 @@ function drawSavings(){
 }
 
 /* backup */
-$('#exp').onclick=()=>{const b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kharcha-backup-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$('#exp').onclick=()=>{if(window.KharchaAndroid){KharchaAndroid.save('kharcha-backup-'+today()+'.json',JSON.stringify(S,null,1));return}const b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='kharcha-backup-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 $('#imp').onclick=()=>$('#impFile').click();
 $('#impFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d||!Array.isArray(d.tx))throw 0;if(!confirm('Replace everything here with this backup?'))return;S=Object.assign(blank(),d);save();render();toast('Backup loaded')}catch(err){toast('That file is not a Kharcha backup')}};r.readAsText(f);e.target.value=''};
 $('#wipe').onclick=()=>{if(!confirm('Delete all entries, plan and savings from this browser? Export first if you want a backup.'))return;S=blank();save();render();toast('Cleared')};

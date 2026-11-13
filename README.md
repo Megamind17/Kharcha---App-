@@ -4,6 +4,8 @@ A simple expense tracker that runs in your browser. No sign-up, no server, no da
 
 **Open it:** visit the GitHub Pages link for this repo, or download `index.html` and open it.
 
+**Android app:** download `Kharcha.apk` from this repo's **Releases** page and open it on your phone to install. A new APK is built automatically every time `main` changes.
+
 ## What it does
 
 - **Dashboard** – spent this month, everyday budget left, today's spending against a daily limit, a donut of spending by category and a bar graph of spending by day.
